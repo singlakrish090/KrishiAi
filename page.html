@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | KrishiAI{% endblock %}
+
+{% block content %}
+
+<section class="hero container">
+
+    <div class="hero-content">
+        <span class="eyebrow">🌱 TECHNOLOGY FOR BETTER FARMING</span>
+
+        {% if page_key == 'home' %}
+        <h1>Smarter Farming.<br><span>Stronger Future.</span></h1>
+        {% else %}
+        <h1>{{ page.title }}</h1>
+        {% endif %}
+
+        <p class="hero-subtitle">{{ page.subtitle }}</p>
+        <p class="hero-description">{{ page.description }}</p>
+
+        {% if page_key == 'home' %}
+        <div class="hero-actions">
+            <a class="button button-primary" href="{{ url_for('show_page', page_key='disease') }}">
+                Explore Disease AI →
+            </a>
+
+            <a class="button button-secondary" href="{{ url_for('show_page', page_key='weather') }}">
+                Check Weather
+            </a>
+        </div>
+        {% elif page_key == 'disease' %}
+        <a class="button button-primary" href="{{ url_for('dashboard') }}">
+            Back to Dashboard →
+        </a>
+        {% elif page_key == 'contact' %}
+        <a class="button button-primary" href="{{ url_for('dashboard') }}">
+            Explore Dashboard →
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="hero-visual">
+        <div class="visual-circle">{{ page.icon }}</div>
+
+        <div class="floating-card card-top">
+            <span>🌦️</span>
+            <div>
+                <strong>Weather</strong>
+                <small>Stay informed</small>
+            </div>
+        </div>
+
+        <div class="floating-card card-bottom">
+            <span>🌱</span>
+            <div>
+                <strong>Crop Health</strong>
+                <small>Technology for farmers</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% if page_key == 'home' %}
+<section class="features-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">WHAT WE OFFER</span>
+            <h2>Everything starts with the right information.</h2>
+            <p>Explore the tools we are building for farmers.</p>
+        </div>
+
+        <div class="feature-grid">
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='disease') }}">
+                <div class="feature-icon">🦠</div>
+                <span class="feature-label">CROP HEALTH</span>
+                <h3>AI Disease Detection</h3>
+                <p>Explore our planned crop-image analysis tool for possible disease identification.</p>
+                <span class="feature-link">Explore feature →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='weather') }}">
+                <div class="feature-icon">🌦️</div>
+                <span class="feature-label">CURRENT CONDITIONS</span>
+                <h3>Live Weather</h3>
+                <p>Access local weather information after the weather service is connected.</p>
+                <span class="feature-link">Explore feature →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='forecast') }}">
+                <div class="feature-icon">📅</div>
+                <span class="feature-label">PLAN AHEAD</span>
+                <h3>Weather Forecast</h3>
+                <p>Prepare for upcoming weather using forecast information.</p>
+                <span class="feature-link">Explore feature →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='schemes') }}">
+                <div class="feature-icon">🏛️</div>
+                <span class="feature-label">FARMER SUPPORT</span>
+                <h3>Government Schemes</h3>
+                <p>Explore agricultural assistance and official government resources.</p>
+                <span class="feature-link">Explore feature →</span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta-section container">
+    <div class="cta-box">
+        <div>
+            <span class="eyebrow">BUILT FOR FARMERS</span>
+            <h2>A smarter farming journey begins here.</h2>
+            <p>Practical tools and reliable information for farming communities.</p>
+        </div>
+
+        <a class="button button-light" href="{{ url_for('dashboard') }}">
+            Open Dashboard →
+        </a>
+    </div>
+</section>
+
+{% else %}
+<section class="features-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">KRISHIAI SERVICES</span>
+            <h2>Explore your farming resources.</h2>
+            <p>Choose a service to continue.</p>
+        </div>
+
+        <div class="feature-grid">
+            <a class="feature-card" href="{{ url_for('show_page', page_key='disease') }}">
+                <div class="feature-icon">🌿</div>
+                <h3>Crop Disease Detection</h3>
+                <p>Explore the planned crop image analysis feature.</p>
+                <span class="feature-link">Open →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='weather') }}">
+                <div class="feature-icon">🌦️</div>
+                <h3>Live Weather</h3>
+                <p>Weather service integration is coming next.</p>
+                <span class="feature-link">Open →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='forecast') }}">
+                <div class="feature-icon">📅</div>
+                <h3>Forecast</h3>
+                <p>Explore upcoming forecast information.</p>
+                <span class="feature-link">Open →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='schemes') }}">
+                <div class="feature-icon">🏛️</div>
+                <h3>Government Schemes</h3>
+                <p>Find agricultural scheme information and official resources.</p>
+                <span class="feature-link">Open →</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

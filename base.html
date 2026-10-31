@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}KrishiAI | Smart Farming{% endblock %}</title>
+
+    <meta name="description"
+        content="KrishiAI provides agricultural tools, crop health information, weather resources and government scheme information.">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar container">
+
+            <a class="brand" href="{{ url_for('home') }}">
+                <span class="brand-icon">🌾</span>
+                <span>Krishi<span class="brand-accent">AI</span></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a class="{% if active == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
+
+                <a class="{% if active == 'dashboard' %}active{% endif %}"
+                    href="{{ url_for('dashboard') }}">Dashboard</a>
+
+                <a class="{% if active == 'disease' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='disease') }}">Disease AI</a>
+
+                <a class="{% if active == 'weather' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='weather') }}">Weather</a>
+
+                <a class="{% if active == 'forecast' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='forecast') }}">Forecast</a>
+
+                <a class="{% if active == 'schemes' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='schemes') }}">Schemes</a>
+
+                <a class="{% if active == 'help' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='help') }}">
+                    Help Centre
+                </a>
+
+                <a class="{% if active == 'about' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='about') }}">About</a>
+
+                <a class="contact-link {% if active == 'contact' %}active{% endif %}"
+                    href="{{ url_for('show_page', page_key='contact') }}">Contact</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <a class="brand footer-brand" href="{{ url_for('home') }}">
+                    🌾 Krishi<span class="brand-accent">AI</span>
+                </a>
+                <p>Smart farming. Better possibilities.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="{{ url_for('show_page', page_key='about') }}">About</a>
+                <a href="{{ url_for('show_page', page_key='contact') }}">Contact</a>
+                <a href="{{ url_for('show_page', page_key='schemes') }}">Schemes</a>
+            </div>
+        </div>
+
+        <div class="container copyright">
+            © 2026 KrishiAI. Built to support farmers.
+            Verify important farming information through reliable sources.
+        </div>
+    </footer>
+
+</body>
+
+</html>

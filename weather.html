@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Live Weather | KrishiAI{% endblock %}
+
+{% block content %}
+
+<section class="weather-page">
+    <div class="container">
+
+        <div class="weather-heading">
+            <span class="eyebrow">WEATHER INTELLIGENCE</span>
+            <h1>Weather for Farmers 🌦️</h1>
+            <p>Check current weather and upcoming conditions for your city.</p>
+        </div>
+
+        <form class="city-form" method="GET" action="{{ url_for('weather_page') }}">
+            <label for="city">Select your city</label>
+
+            <select name="city" id="city">
+                {% for item in cities %}
+                <option value="{{ item }}" {% if weather.city is defined and weather.city==item %}selected{% endif %}>
+                    {{ item }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <button class="button button-primary" type="submit">
+                Get Weather →
+            </button>
+        </form>
+
+        {% if weather.error %}
+
+        <div class="weather-error">
+            <h2>Weather unavailable</h2>
+            <p>{{ weather.error }}</p>
+            <p>Please check your internet connection and try again.</p>
+        </div>
+
+        {% else %}
+
+        <div class="current-weather">
+            <div class="current-weather-top">
+                <div>
+                    <span class="weather-label">CURRENT CONDITIONS</span>
+                    <h2>{{ weather.city }}</h2>
+                    <p>{{ weather.condition }}</p>
+                    <small>Updated: {{ weather.updated_at }}</small>
+                </div>
+
+                <div class="temperature">
+                    {{ weather.temperature }}<span>°C</span>
+                </div>
+            </div>
+
+            <div class="weather-stats">
+
+                <div class="weather-stat">
+                    <span>🌡️</span>
+                    <div>
+                        <small>Feels Like</small>
+                        <strong>{{ weather.feels_like }} °C</strong>
+                    </div>
+                </div>
+
+                <div class="weather-stat">
+                    <span>💧</span>
+                    <div>
+                        <small>Humidity</small>
+                        <strong>{{ weather.humidity }}%</strong>
+                    </div>
+                </div>
+
+                <div class="weather-stat">
+                    <span>💨</span>
+                    <div>
+                        <small>Wind Speed</small>
+                        <strong>{{ weather.wind_speed }} km/h</strong>
+                    </div>
+                </div>
+
+                <div class="weather-stat">
+                    <span>🌧️</span>
+                    <div>
+                        <small>Precipitation</small>
+                        <strong>{{ weather.precipitation }} mm</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="forecast-heading">
+            <span class="eyebrow">PLAN AHEAD</span>
+            <h2>5-Day Weather Forecast</h2>
+            <p>Review the forecast before making weather-sensitive farming decisions.</p>
+        </div>
+
+        <div class="forecast-grid">
+
+            {% for day in weather.forecast %}
+            <article class="forecast-card">
+
+                <span class="forecast-icon">🌤️</span>
+
+                <h3>{{ day.date }}</h3>
+
+                <p class="forecast-condition">
+                    {{ day.condition }}
+                </p>
+
+                <div class="forecast-temperatures">
+                    <strong>{{ day.max_temp }}°</strong>
+                    <span>{{ day.min_temp }}°</span>
+                </div>
+
+                <div class="rain-chance">
+                    🌧️ Rain chance:
+                    <strong>
+                        {% if day.rain_chance is not none %}
+                        {{ day.rain_chance }}%
+                        {% else %}
+                        N/A
+                        {% endif %}
+                    </strong>
+                </div>
+
+            </article>
+            {% endfor %}
+
+        </div>
+
+        <div class="weather-disclaimer">
+            <strong>Important:</strong>
+            Forecasts can change. Check updated weather alerts and official
+            advisories before making important farming decisions.
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

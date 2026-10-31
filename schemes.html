@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    /* Government Schemes Page */
+
+    .schemes-page {
+        background: #f8faf6;
+        min-height: 100vh;
+        padding-bottom: 60px;
+    }
+
+    .schemes-hero {
+        background: linear-gradient(135deg, #104b32, #176b45);
+        color: white;
+        padding: 65px 0;
+        text-align: center;
+    }
+
+    .schemes-hero .eyebrow {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.14);
+        padding: 7px 16px;
+        border-radius: 30px;
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+
+    .schemes-hero h1 {
+        font-size: clamp(30px, 5vw, 46px);
+        line-height: 1.2;
+        margin-bottom: 18px;
+    }
+
+    .schemes-hero p {
+        max-width: 680px;
+        margin: auto;
+        color: #e2f0e5;
+        font-size: 16px;
+    }
+
+    .schemes-search-section {
+        margin-top: -25px;
+        position: relative;
+    }
+
+    .schemes-search {
+        background: white;
+        max-width: 680px;
+        margin: auto;
+        padding: 12px;
+        border: 1px solid #e3eae2;
+        border-radius: 14px;
+        box-shadow: 0 12px 35px rgba(25, 65, 43, 0.10);
+        display: flex;
+        gap: 10px;
+    }
+
+    .schemes-search input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        padding: 12px;
+        font-size: 15px;
+        color: #20372a;
+    }
+
+    .schemes-search button {
+        background: #176b45;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 9px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .schemes-content {
+        padding-top: 55px;
+    }
+
+    .schemes-heading {
+        margin-bottom: 25px;
+    }
+
+    .schemes-heading h2 {
+        font-size: 27px;
+        margin-bottom: 7px;
+    }
+
+    .schemes-heading p {
+        color: #68786d;
+    }
+
+    .schemes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .scheme-card {
+        background: white;
+        border: 1px solid #e3eae2;
+        border-radius: 17px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .scheme-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 35px rgba(25, 65, 43, 0.09);
+    }
+
+    .scheme-icon {
+        width: 54px;
+        height: 54px;
+        display: grid;
+        place-items: center;
+        background: #eaf5ed;
+        border-radius: 14px;
+        font-size: 27px;
+        margin-bottom: 18px;
+    }
+
+    .scheme-tag {
+        color: #176b45;
+        background: #eaf5ed;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        align-self: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .scheme-card h3 {
+        font-size: 19px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+    .scheme-card>p {
+        color: #68786d;
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+
+    .scheme-details {
+        border-top: 1px solid #e3eae2;
+        padding-top: 15px;
+        margin-top: auto;
+    }
+
+    .scheme-details h4 {
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    .scheme-details p {
+        font-size: 13px;
+        color: #68786d;
+        margin-bottom: 15px;
+    }
+
+    .scheme-button {
+        display: block;
+        text-align: center;
+        background: #176b45;
+        color: white;
+        padding: 12px 14px;
+        border-radius: 9px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+
+    .scheme-button:hover {
+        background: #104b32;
+    }
+
+    .scheme-button.secondary {
+        background: white;
+        border: 1px solid #176b45;
+        color: #176b45;
+    }
+
+    .scheme-note {
+        background: #eaf5ed;
+        border: 1px solid #d6e8d8;
+        padding: 22px;
+        border-radius: 14px;
+        margin-top: 35px;
+        font-size: 14px;
+        color: #365d43;
+    }
+
+    .no-schemes {
+        display: none;
+        padding: 30px;
+        text-align: center;
+        color: #68786d;
+        background: white;
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 900px) {
+        .schemes-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .schemes-hero {
+            padding: 48px 0;
+        }
+
+        .schemes-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .schemes-search {
+            padding: 8px;
+        }
+
+        .schemes-search input {
+            padding: 9px 5px;
+            font-size: 13px;
+        }
+
+        .schemes-search button {
+            padding: 10px 13px;
+        }
+
+        .schemes-content {
+            padding-top: 40px;
+        }
+    }
+</style>
+
+<div class="schemes-page">
+
+    <section class="schemes-hero">
+        <div class="container">
+            <span class="eyebrow">🌾 Farmer Support Centre</span>
+
+            <h1>Government Schemes for Farmers</h1>
+
+            <p>
+                Discover agricultural support programmes, crop insurance,
+                farming credit and digital marketplaces in one place.
+                Explore official information and check your eligibility.
+            </p>
+        </div>
+    </section>
+
+    <section class="container schemes-search-section">
+        <div class="schemes-search">
+            <input type="search" id="schemeSearch" placeholder="Search schemes, insurance, loans..."
+                aria-label="Search government schemes">
+            <button type="button" onclick="searchSchemes()">Search</button>
+        </div>
+    </section>
+
+    <section class="container schemes-content">
+
+        <div class="schemes-heading">
+            <h2>Explore Agriculture Schemes</h2>
+            <p>Find useful government resources for your farming needs.</p>
+        </div>
+
+        <div class="schemes-grid" id="schemesGrid">
+
+            <!-- PM-KISAN -->
+            <article class="scheme-card" data-search="pm kisan income support financial assistance farmer payment">
+
+                <div class="scheme-icon">💰</div>
+                <span class="scheme-tag">INCOME SUPPORT</span>
+
+                <h3>PM-KISAN Samman Nidhi</h3>
+
+                <p>
+                    Provides eligible farmer families with financial
+                    assistance of ₹6,000 per year, paid in three instalments
+                    subject to scheme rules.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>Who may be eligible?</h4>
+                    <p>
+                        Eligible landholding farmer families, subject to
+                        applicable exclusions and verification requirements.
+                        eKYC is required under the scheme.
+                    </p>
+
+                    <a class="scheme-button" href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer">
+                        Visit Official Portal ↗
+                    </a>
+                </div>
+            </article>
+
+            <!-- PMFBY -->
+            <article class="scheme-card"
+                data-search="pmfby fasal bima yojana crop insurance crop loss natural calamity">
+
+                <div class="scheme-icon">🛡️</div>
+                <span class="scheme-tag">CROP INSURANCE</span>
+
+                <h3>PM Fasal Bima Yojana</h3>
+
+                <p>
+                    A government crop insurance scheme intended to help
+                    eligible farmers manage specified crop-loss risks.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>Who may be eligible?</h4>
+                    <p>
+                        Eligibility, notified crops, insurance units and
+                        enrolment periods depend on the applicable season
+                        and state notifications.
+                    </p>
+
+                    <a class="scheme-button" href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer">
+                        Explore Crop Insurance ↗
+                    </a>
+                </div>
+            </article>
+
+            <!-- KCC -->
+            <article class="scheme-card" data-search="kisan credit card kcc agriculture loan farming credit interest">
+
+                <div class="scheme-icon">💳</div>
+                <span class="scheme-tag">FARMING CREDIT</span>
+
+                <h3>Kisan Credit Card (KCC)</h3>
+
+                <p>
+                    Provides eligible farmers access to agricultural credit
+                    for qualifying farming and related expenses through
+                    participating financial institutions.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>How to explore it</h4>
+                    <p>
+                        Check current eligibility, credit limits, interest
+                        terms and application requirements with your bank
+                        or an official government scheme resource.
+                    </p>
+
+                    <a class="scheme-button" href="https://www.myscheme.gov.in/schemes/kcc" target="_blank"
+                        rel="noopener noreferrer">
+                        View Scheme Details ↗
+                    </a>
+                </div>
+            </article>
+
+            <!-- e-NAM -->
+            <article class="scheme-card"
+                data-search="enam e nam online mandi market selling agricultural produce digital trading">
+
+                <div class="scheme-icon">🏪</div>
+                <span class="scheme-tag">DIGITAL MARKET</span>
+
+                <h3>e-NAM Agricultural Market</h3>
+
+                <p>
+                    An electronic agricultural trading platform that connects
+                    participating mandis and supports online market access
+                    for agricultural produce.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>Useful for farmers</h4>
+                    <p>
+                        Explore the platform and check participating markets,
+                        registration procedures and available services.
+                    </p>
+
+                    <a class="scheme-button" href="https://enam.gov.in/" target="_blank" rel="noopener noreferrer">
+                        Visit e-NAM Portal ↗
+                    </a>
+                </div>
+            </article>
+
+            <!-- Soil Health Card -->
+            <article class="scheme-card" data-search="soil health card soil testing nutrients fertilizer soil quality">
+
+                <div class="scheme-icon">🌱</div>
+                <span class="scheme-tag">SOIL MANAGEMENT</span>
+
+                <h3>Soil Health Card</h3>
+
+                <p>
+                    Helps farmers understand soil nutrient status and access
+                    recommendations that can guide balanced fertilizer use
+                    and soil management.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>Why it matters</h4>
+                    <p>
+                        Soil testing and recommendations can help farmers
+                        make more informed decisions about crop nutrition.
+                        Check current services through official resources.
+                    </p>
+
+                    <a class="scheme-button" href="https://soilhealth.dac.gov.in/" target="_blank"
+                        rel="noopener noreferrer">
+                        Explore Soil Health ↗
+                    </a>
+                </div>
+            </article>
+
+            <!-- PMKSY -->
+            <article class="scheme-card"
+                data-search="pmksy irrigation water management micro irrigation drip sprinkler water conservation">
+
+                <div class="scheme-icon">💧</div>
+                <span class="scheme-tag">IRRIGATION</span>
+
+                <h3>PM Krishi Sinchayee Yojana</h3>
+
+                <p>
+                    Supports irrigation and water-management objectives
+                    through different programme components and applicable
+                    implementation arrangements.
+                </p>
+
+                <div class="scheme-details">
+                    <h4>Before applying</h4>
+                    <p>
+                        Check which components are currently available in
+                        your state, along with eligibility, subsidy rules
+                        and application dates.
+                    </p>
+
+                    <a class="scheme-button" href="https://pmksy.gov.in/" target="_blank" rel="noopener noreferrer">
+                        Explore Irrigation Scheme ↗
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="no-schemes" id="noSchemes">
+            <h3>No matching schemes found</h3>
+            <p>Try another keyword, such as insurance, credit or irrigation.</p>
+        </div>
+
+        <div class="scheme-note">
+            <strong>📌 Important information:</strong>
+            This page provides general information and links to external
+            resources. Scheme eligibility, benefits, required documents,
+            application dates and availability may change. Always verify
+            the latest details on the official portal or with your
+            relevant government department before applying.
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    function searchSchemes() {
+        const input = document.getElementById("schemeSearch");
+        const query = input.value.trim().toLowerCase();
+        const cards = document.querySelectorAll(".scheme-card");
+
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+            const searchableText =
+                (card.innerText + " " + (card.dataset.search || ""))
+                    .toLowerCase();
+
+            const matches = searchableText.includes(query);
+
+            card.style.display = matches ? "flex" : "none";
+
+            if (matches) {
+                visibleCount++;
+            }
+        });
+
+        document.getElementById("noSchemes").style.display =
+            visibleCount === 0 ? "block" : "none";
+    }
+
+    document.getElementById("schemeSearch").addEventListener(
+        "input",
+        searchSchemes
+    );
+</script>
+
+{% endblock %}

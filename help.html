@@ -1,0 +1,395 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .help-page {
+        background: #f8faf6;
+        min-height: 100vh;
+        padding-bottom: 60px;
+    }
+
+    .help-hero {
+        background: linear-gradient(135deg, #104b32, #176b45);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .help-hero .tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 7px 15px;
+        border-radius: 30px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+
+    .help-hero h1 {
+        font-size: clamp(30px, 5vw, 44px);
+        margin-bottom: 14px;
+    }
+
+    .help-hero p {
+        max-width: 650px;
+        margin: auto;
+        color: #e2f0e5;
+    }
+
+    .help-container {
+        width: min(1160px, 90%);
+        margin: 40px auto;
+    }
+
+    .help-heading {
+        margin-bottom: 25px;
+    }
+
+    .help-heading h2 {
+        font-size: 27px;
+        margin-bottom: 7px;
+    }
+
+    .help-heading p {
+        color: #68786d;
+    }
+
+    .help-search {
+        width: 100%;
+        padding: 15px 18px;
+        border: 1px solid #e3eae2;
+        border-radius: 12px;
+        background: white;
+        font-size: 15px;
+        margin-bottom: 28px;
+        outline-color: #176b45;
+    }
+
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .help-card {
+        background: white;
+        border: 1px solid #e3eae2;
+        border-radius: 17px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        transition: 0.2s;
+    }
+
+    .help-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(25, 65, 43, 0.09);
+    }
+
+    .help-icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 14px;
+        background: #eaf5ed;
+        display: grid;
+        place-items: center;
+        font-size: 27px;
+        margin-bottom: 18px;
+    }
+
+    .help-card h3 {
+        font-size: 19px;
+        margin-bottom: 10px;
+    }
+
+    .help-card p {
+        color: #68786d;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .help-number {
+        color: #176b45;
+        font-size: 23px;
+        font-weight: 750;
+        margin: 5px 0 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .help-button {
+        display: block;
+        text-align: center;
+        background: #176b45;
+        color: white;
+        padding: 12px 14px;
+        border-radius: 9px;
+        margin-top: auto;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .help-button:hover {
+        background: #104b32;
+    }
+
+    .help-button.secondary {
+        background: white;
+        border: 1px solid #176b45;
+        color: #176b45;
+        margin-top: 9px;
+    }
+
+    .help-note {
+        background: #eaf5ed;
+        border: 1px solid #d6e8d8;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 32px;
+        color: #365d43;
+        font-size: 14px;
+    }
+
+    .help-empty {
+        display: none;
+        text-align: center;
+        padding: 25px;
+        background: white;
+        border-radius: 12px;
+        color: #68786d;
+    }
+
+    @media (max-width: 900px) {
+        .help-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .help-hero {
+            padding: 45px 0;
+        }
+
+        .help-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .help-container {
+            margin: 30px auto;
+        }
+    }
+</style>
+
+<div class="help-page">
+
+    <section class="help-hero">
+        <div class="container">
+            <span class="tag">🌾 Farmer Support Centre</span>
+
+            <h1>How Can We Help You?</h1>
+
+            <p>
+                Find agricultural helplines, crop insurance assistance
+                and official government resources, all in one place.
+            </p>
+        </div>
+    </section>
+
+    <section class="help-container">
+
+        <div class="help-heading">
+            <h2>Farmer Helplines & Resources</h2>
+            <p>Search for the support you need.</p>
+        </div>
+
+        <input type="search" class="help-search" id="helpSearch" placeholder="Search crop advice, insurance, schemes..."
+            aria-label="Search farmer support">
+
+        <div class="help-grid" id="helpGrid">
+
+            <!-- Kisan Call Centre -->
+            <article class="help-card"
+                data-search="kisan call centre crop farming agriculture advice pest disease fertilizer seeds">
+
+                <div class="help-icon">📞</div>
+
+                <h3>Kisan Call Centre</h3>
+
+                <p>
+                    Get agricultural advice and ask questions about crops,
+                    pests, diseases and other farming-related topics.
+                </p>
+
+                <div class="help-number">1800-180-1551</div>
+
+                <p>
+                    <strong>Hours:</strong> Daily, 6 AM–10 PM.
+                    Support is available in multiple Indian languages.
+                </p>
+
+                <a class="help-button" href="tel:18001801551">
+                    📱 Call Kisan Helpline
+                </a>
+
+                <a class="help-button secondary" href="https://dackkms.gov.in/account/aboutus.aspx" target="_blank"
+                    rel="noopener noreferrer">
+                    Official Information ↗
+                </a>
+            </article>
+
+            <!-- Crop Insurance -->
+            <article class="help-card"
+                data-search="crop insurance pmfby fasal bima crop loss claim complaint grievance">
+
+                <div class="help-icon">🛡️</div>
+
+                <h3>Crop Insurance Support</h3>
+
+                <p>
+                    Contact the official crop insurance support service
+                    for scheme-related queries, grievances and crop-loss
+                    reporting.
+                </p>
+
+                <div class="help-number">14447</div>
+
+                <p>
+                    <strong>For:</strong> PM Fasal Bima Yojana
+                    queries and grievances.
+                </p>
+
+                <a class="help-button" href="tel:14447">
+                    📱 Call Insurance Helpline
+                </a>
+
+                <a class="help-button secondary" href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer">
+                    Official PMFBY Portal ↗
+                </a>
+            </article>
+
+            <!-- Government Schemes -->
+            <article class="help-card"
+                data-search="government schemes pm kisan financial assistance subsidy eligibility application">
+
+                <div class="help-icon">🏛️</div>
+
+                <h3>Government Schemes</h3>
+
+                <p>
+                    Explore farmer assistance programmes and check
+                    eligibility, application requirements and official
+                    scheme information.
+                </p>
+
+                <a class="help-button" href="{{ url_for('show_page', page_key='schemes') }}">
+                    Explore Schemes
+                </a>
+
+                <a class="help-button secondary" href="https://www.myscheme.gov.in/" target="_blank"
+                    rel="noopener noreferrer">
+                    Government Scheme Finder ↗
+                </a>
+            </article>
+
+            <!-- Weather -->
+            <article class="help-card" data-search="weather rainfall temperature forecast farming planning">
+
+                <div class="help-icon">🌦️</div>
+
+                <h3>Weather Information</h3>
+
+                <p>
+                    Check local weather conditions to help plan irrigation,
+                    spraying and other farm activities.
+                </p>
+
+                <a class="help-button" href="{{ url_for('weather_page') }}">
+                    Check Local Weather
+                </a>
+
+                <a class="help-button secondary" href="https://mausam.imd.gov.in/" target="_blank"
+                    rel="noopener noreferrer">
+                    IMD Weather Portal ↗
+                </a>
+            </article>
+
+            <!-- Market -->
+            <article class="help-card" data-search="mandi market prices agricultural produce crop sale enam">
+
+                <div class="help-icon">🏪</div>
+
+                <h3>Market & Mandi Resources</h3>
+
+                <p>
+                    Explore the national electronic agricultural market
+                    platform and its participating markets.
+                </p>
+
+                <a class="help-button" href="https://enam.gov.in/" target="_blank" rel="noopener noreferrer">
+                    Visit e-NAM Portal ↗
+                </a>
+            </article>
+
+            <!-- KrishiAI Contact -->
+            <article class="help-card" data-search="krishiai contact feedback website support suggestions">
+
+                <div class="help-icon">💚</div>
+
+                <h3>Contact KrishiAI</h3>
+
+                <p>
+                    Have feedback or suggestions for improving our
+                    farming support platform?
+                </p>
+
+                <a class="help-button" href="{{ url_for('show_page', page_key='contact') }}">
+                    Contact Our Team
+                </a>
+            </article>
+
+        </div>
+
+        <div class="help-empty" id="helpEmpty">
+            <h3>No matching resources found</h3>
+            <p>Try searching for insurance, weather or farming advice.</p>
+        </div>
+
+        <div class="help-note">
+            <strong>📌 Important:</strong>
+            Helplines and external resources are provided for convenience.
+            Government departments control their services and eligibility
+            rules. Verify important details through official sources.
+            KrishiAI does not replace professional agricultural advice.
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    const helpSearch = document.getElementById("helpSearch");
+
+    helpSearch.addEventListener("input", function () {
+        const query = this.value.trim().toLowerCase();
+        const cards = document.querySelectorAll(".help-card");
+        let visible = 0;
+
+        cards.forEach(function (card) {
+            const text = (
+                card.innerText + " " + (card.dataset.search || "")
+            ).toLowerCase();
+
+            const matches = text.includes(query);
+
+            card.style.display = matches ? "flex" : "none";
+
+            if (matches) {
+                visible++;
+            }
+        });
+
+        document.getElementById("helpEmpty").style.display =
+            visible === 0 ? "block" : "none";
+    });
+</script>
+
+{% endblock %}

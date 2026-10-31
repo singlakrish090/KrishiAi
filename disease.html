@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}AI Wheat Health Classification | KrishiAI{% endblock %}
+
+{% block content %}
+
+<section class="disease-page">
+    <div class="container">
+
+        <div class="disease-heading">
+            <span class="eyebrow">AI-POWERED CROP HEALTH</span>
+            <h1>AI Wheat Health Classification 🌾</h1>
+            <p>
+                Upload a clear wheat leaf image to classify its health
+                using our trained AI model.
+            </p>
+        </div>
+
+        <div class="disease-layout">
+
+            <div class="upload-card">
+                <div class="upload-icon">📸</div>
+                <h2>Upload Wheat Image</h2>
+                <p>
+                    Choose a clear photo of a wheat leaf or plant.
+                    This prototype currently supports wheat images.
+                </p>
+
+                <form method="POST" action="{{ url_for('disease_page') }}" enctype="multipart/form-data" id="cropForm">
+
+                    <label for="crop_image" class="upload-area">
+                        <span class="upload-symbol">＋</span>
+                        <strong>Choose an image</strong>
+                        <span>JPG, JPEG, PNG or WEBP · Max 8 MB</span>
+
+                        <input type="file" name="crop_image" id="crop_image"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required>
+                    </label>
+
+                    <div id="preview-container" hidden>
+                        <img id="image-preview" alt="Selected wheat crop preview">
+                        <p id="file-name"></p>
+                    </div>
+
+                    <button type="submit" class="button button-primary analyze-button">
+                        Analyse Wheat Image →
+                    </button>
+                </form>
+
+                {% if error %}
+                <div class="disease-alert error-alert" role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                {% if message %}
+                <div class="disease-alert success-alert" role="status">
+                    {{ message }}
+                </div>
+                {% endif %}
+
+                {% if uploaded_image %}
+                <div class="prediction-image">
+                    <h3>Uploaded Image</h3>
+                    <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded wheat image"
+                        style="width:100%;max-width:400px;height:auto;border-radius:12px;">
+                </div>
+                {% endif %}
+
+                {% if prediction %}
+                <div class="prediction-result" aria-live="polite"
+                    style="margin-top:24px;padding:20px;border-radius:14px;border:1px solid #d5e6d4;">
+
+                    <span class="eyebrow">AI ANALYSIS RESULT</span>
+                    <h2 style="margin-top:10px;">{{ prediction.label }}</h2>
+
+                    <p>
+                        <strong>Prediction confidence:</strong>
+                        {{ prediction.confidence }}%
+                    </p>
+
+                    <div style="background:#e8eee7;border-radius:8px;height:12px;overflow:hidden;">
+                        <div
+                            style="width:{{ prediction.confidence }}%;max-width:100%;height:12px;background:#39834a;border-radius:8px;">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:22px;">Class probabilities</h3>
+
+                    {% for label, probability in prediction.probabilities.items() %}
+                    <div style="margin:12px 0;">
+                        <div style="display:flex;justify-content:space-between;gap:12px;">
+                            <span>{{ label }}</span>
+                            <strong>{{ probability }}%</strong>
+                        </div>
+                        <div style="background:#e8eee7;border-radius:6px;height:7px;margin-top:5px;overflow:hidden;">
+                            <div
+                                style="width:{{ probability }}%;max-width:100%;height:7px;background:#39834a;border-radius:6px;">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="disease-note" style="margin-top:20px;">
+                        <strong>Important:</strong>
+                        {{ prediction.disclaimer }}
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="disease-info-card">
+                <span class="eyebrow">HOW IT WORKS</span>
+                <h2>Three Simple Steps</h2>
+
+                <div class="disease-step">
+                    <span>01</span>
+                    <div>
+                        <h3>Upload a Wheat Photo</h3>
+                        <p>Choose a clear picture of a wheat leaf or plant.</p>
+                    </div>
+                </div>
+
+                <div class="disease-step">
+                    <span>02</span>
+                    <div>
+                        <h3>AI Image Analysis</h3>
+                        <p>
+                            The trained ResNet18 model analyses the image
+                            and estimates the most likely class.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="disease-step">
+                    <span>03</span>
+                    <div>
+                        <h3>Review the Result</h3>
+                        <p>
+                            Review the predicted class and the model's
+                            confidence scores.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="disease-note">
+                    <strong>Important:</strong>
+                    This prototype supports six wheat image classes:
+                    Aphid Pest Damage, Wheat Blast, Healthy Wheat,
+                    Wheat Leaf Rust, Wheat Smut and Wheat Yellow Rust.
+                    It may misclassify images, especially images outside
+                    its training data. Model confidence is not a guarantee
+                    of diagnostic accuracy. Seek advice from an agricultural
+                    expert before taking crop-treatment decisions.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    const imageInput = document.getElementById("crop_image");
+    const previewContainer = document.getElementById("preview-container");
+    const imagePreview = document.getElementById("image-preview");
+    const fileName = document.getElementById("file-name");
+    const cropForm = document.getElementById("cropForm");
+
+    imageInput.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (!file) {
+            previewContainer.hidden = true;
+            imagePreview.removeAttribute("src");
+            return;
+        }
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!allowedTypes.includes(file.type) ||
+            file.size > 8 * 1024 * 1024) {
+            alert("Choose a JPG, PNG or WEBP image under 8 MB.");
+            this.value = "";
+            previewContainer.hidden = true;
+            imagePreview.removeAttribute("src");
+            return;
+        }
+
+        imagePreview.src = URL.createObjectURL(file);
+        fileName.textContent = file.name;
+        previewContainer.hidden = false;
+    });
+
+    cropForm.addEventListener("submit", function () {
+        const button = cropForm.querySelector('button[type="submit"]');
+        button.disabled = true;
+        button.textContent = "Analysing image...";
+    });
+</script>
+
+{% endblock %}

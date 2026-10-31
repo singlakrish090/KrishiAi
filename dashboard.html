@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Farmer Dashboard | KrishiAI{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-hero">
+    <div class="container">
+        <span class="eyebrow">YOUR FARMING SPACE</span>
+        <h1>Welcome to your Dashboard 🌾</h1>
+        <p>Useful farming resources, all in one place.</p>
+
+        <div class="dashboard-status">
+            <span class="status-dot"></span>
+            KrishiAI platform is running
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">YOUR TOOLS</span>
+            <h2>What would you like to explore?</h2>
+            <p>Select a service to continue.</p>
+        </div>
+
+        <div class="feature-grid">
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='disease') }}">
+                <div class="feature-icon">🦠</div>
+                <span class="feature-label">CROP HEALTH</span>
+                <h3>AI Disease Detection</h3>
+                <p>Explore the crop image analysis feature. AI predictions will be available after model integration.
+                </p>
+                <span class="feature-link">Explore Disease AI →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='weather') }}">
+                <div class="feature-icon">🌦️</div>
+                <span class="feature-label">WEATHER</span>
+                <h3>Live Weather</h3>
+                <p>Access current weather information after connecting a weather data service.</p>
+                <span class="feature-link">Check Weather →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='forecast') }}">
+                <div class="feature-icon">📅</div>
+                <span class="feature-label">PLAN AHEAD</span>
+                <h3>Weather Forecast</h3>
+                <p>Prepare for upcoming conditions with forecast information.</p>
+                <span class="feature-link">View Forecast →</span>
+            </a>
+
+            <a class="feature-card" href="{{ url_for('show_page', page_key='schemes') }}">
+                <div class="feature-icon">🏛️</div>
+                <span class="feature-label">FARMER SUPPORT</span>
+                <h3>Government Schemes</h3>
+                <p>Explore agricultural support and official government scheme resources.</p>
+                <span class="feature-link">Explore Schemes →</span>
+            </a>
+
+        </div>
+
+        <div class="dashboard-note">
+            <div class="note-icon">💚</div>
+            <div>
+                <h3>Our mission</h3>
+                <p>KrishiAI aims to make agricultural information more accessible to farmers in Punjab, Haryana and
+                    beyond.</p>
+                <p><strong>Note:</strong> Live weather and AI analysis are not yet active. We will connect and test
+                    these services in upcoming steps.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

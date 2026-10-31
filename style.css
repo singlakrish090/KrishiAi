@@ -1,0 +1,1084 @@
+:root {
+    --green: #176b45;
+    --green-dark: #104b32;
+    --green-light: #eaf5ed;
+    --lime: #d8edb8;
+    --text: #20372a;
+    --muted: #68786d;
+    --white: #ffffff;
+    --background: #f8faf6;
+    --border: #e3eae2;
+    --shadow: 0 16px 45px rgba(25, 65, 43, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin-inline: auto;
+}
+
+.site-header {
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green-dark);
+    font-size: 1.55rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.brand-icon {
+    font-size: 1.8rem;
+}
+
+.brand-accent {
+    color: #70a84d;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--green);
+}
+
+.nav-links .contact-link {
+    padding: 10px 16px;
+    border-radius: 9px;
+    color: var(--white);
+    background: var(--green);
+}
+
+.nav-links .contact-link:hover,
+.nav-links .contact-link.active {
+    background: var(--green-dark);
+    color: var(--white);
+}
+
+.menu-toggle {
+    display: none;
+    padding: 7px 11px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    color: var(--green-dark);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 55px;
+    min-height: 510px;
+    padding-block: 65px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--green);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    color: var(--green-dark);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    line-height: 1.12;
+    letter-spacing: -1.8px;
+    overflow-wrap: anywhere;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero-subtitle {
+    margin-top: 23px;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.hero-description {
+    margin-top: 12px;
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 1.03rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background: var(--green);
+    color: white;
+}
+
+.button-primary:hover {
+    background: var(--green-dark);
+}
+
+.button-secondary {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--green-dark);
+}
+
+.button-light {
+    background: white;
+    color: var(--green-dark);
+    flex-shrink: 0;
+}
+
+.hero-visual {
+    min-height: 355px;
+    border-radius: 35px;
+    background: linear-gradient(140deg, #eaf5ed, #d9edc8);
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.visual-circle {
+    width: 210px;
+    height: 210px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 7rem;
+    box-shadow: var(--shadow);
+}
+
+.floating-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: 13px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.floating-card>span {
+    font-size: 1.8rem;
+}
+
+.floating-card strong,
+.floating-card small {
+    display: block;
+}
+
+.floating-card strong {
+    color: var(--green-dark);
+}
+
+.floating-card small {
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+.card-top {
+    top: 35px;
+    right: 20px;
+}
+
+.card-bottom {
+    bottom: 30px;
+    left: 15px;
+}
+
+.features-section {
+    background: var(--background);
+    padding-block: 75px;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.section-heading h2 {
+    color: var(--green-dark);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.25;
+}
+
+.section-heading p {
+    color: var(--muted);
+    margin-top: 12px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.feature-card {
+    display: block;
+    padding: 27px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(25, 65, 43, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: var(--green-light);
+    font-size: 1.8rem;
+}
+
+.feature-label {
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.feature-card h3 {
+    color: var(--green-dark);
+    font-size: 1.25rem;
+    margin-top: 7px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    margin-top: 10px;
+    font-size: 0.94rem;
+}
+
+.feature-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--green);
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.cta-section {
+    padding-block: 65px;
+}
+
+.cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 40px;
+    border-radius: 22px;
+    background: var(--green-dark);
+    color: white;
+}
+
+.cta-box .eyebrow {
+    color: var(--lime);
+}
+
+.cta-box h2 {
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    line-height: 1.25;
+}
+
+.cta-box p {
+    margin-top: 10px;
+    color: #d5e5d9;
+}
+
+.dashboard-hero {
+    padding-block: 55px;
+    background: linear-gradient(135deg, #eaf5ed, #f8faf6);
+}
+
+.dashboard-hero h1 {
+    max-width: 850px;
+    color: var(--green-dark);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.2;
+}
+
+.dashboard-hero p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.dashboard-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 22px;
+    padding: 9px 13px;
+    border: 1px solid #cce4d0;
+    border-radius: 30px;
+    background: white;
+    color: var(--green-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #2f9d57;
+}
+
+.dashboard-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-top: 35px;
+    padding: 25px;
+    border: 1px solid #d9e9d9;
+    border-radius: 16px;
+    background: var(--green-light);
+}
+
+.note-icon {
+    font-size: 2rem;
+}
+
+.dashboard-note h3 {
+    color: var(--green-dark);
+    margin-bottom: 7px;
+}
+
+.dashboard-note p {
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.site-footer {
+    padding-top: 45px;
+    background: #102e20;
+    color: #dce9df;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.footer-brand {
+    color: white;
+}
+
+.footer-content p {
+    margin-top: 8px;
+    color: #b9cdbf;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #dce9df;
+    font-size: 0.9rem;
+}
+
+.copyright {
+    padding-block: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    color: #b9cdbf;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 1000px) {
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 0.82rem;
+    }
+
+    .hero {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        min-height: 70px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links .contact-link {
+        text-align: center;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-block: 45px;
+    }
+
+    .hero-visual {
+        min-height: 300px;
+    }
+
+    .visual-circle {
+        width: 170px;
+        height: 170px;
+        font-size: 5.5rem;
+    }
+
+    .cta-box {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 560px) {
+    .container {
+        width: 90%;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 22px;
+    }
+
+    .features-section {
+        padding-block: 55px;
+    }
+
+    .dashboard-note {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-links {
+        gap: 15px;
+    }
+
+    .card-top {
+        right: 10px;
+    }
+
+    .card-bottom {
+        left: 10px;
+    }
+}
+
+/* WEATHER PAGE */
+
+.weather-page {
+    padding: 55px 0 80px;
+    background: var(--background);
+    min-height: 70vh;
+}
+
+.weather-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.weather-heading h1 {
+    color: var(--green-dark);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+}
+
+.weather-heading p,
+.forecast-heading p {
+    margin-top: 10px;
+    color: var(--muted);
+}
+
+.city-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto 35px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+}
+
+.city-form label {
+    color: var(--green-dark);
+    font-weight: 700;
+}
+
+.city-form select {
+    flex: 1;
+    min-width: 180px;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+}
+
+.city-form button {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.current-weather {
+    padding: 32px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #176b45, #104b32);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.current-weather-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.weather-label {
+    color: #d8edb8;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.current-weather h2 {
+    margin-top: 8px;
+    font-size: 2rem;
+}
+
+.current-weather-top p {
+    margin-top: 3px;
+    color: #e1eee4;
+}
+
+.current-weather small {
+    display: block;
+    margin-top: 10px;
+    color: #d1e2d6;
+}
+
+.temperature {
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1;
+}
+
+.temperature span {
+    font-size: 2rem;
+    vertical-align: top;
+}
+
+.weather-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 32px;
+}
+
+.weather-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.weather-stat>span {
+    font-size: 1.6rem;
+}
+
+.weather-stat small {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+}
+
+.weather-stat strong {
+    font-size: 0.95rem;
+}
+
+.forecast-heading {
+    margin: 55px 0 25px;
+}
+
+.forecast-heading h2 {
+    color: var(--green-dark);
+    font-size: 2rem;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.forecast-card {
+    padding: 20px 15px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(25, 65, 43, 0.04);
+}
+
+.forecast-icon {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 2rem;
+}
+
+.forecast-card h3 {
+    color: var(--green-dark);
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
+}
+
+.forecast-condition {
+    min-height: 42px;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.83rem;
+}
+
+.forecast-temperatures {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+.forecast-temperatures strong {
+    color: var(--green-dark);
+}
+
+.forecast-temperatures span {
+    color: var(--muted);
+}
+
+.rain-chance {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.rain-chance strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--green);
+    font-size: 1rem;
+}
+
+.weather-disclaimer {
+    margin-top: 28px;
+    padding: 18px 20px;
+    border: 1px solid #d8e7cb;
+    border-radius: 12px;
+    background: #edf5e6;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.weather-error {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 1px solid #f0d0cb;
+    border-radius: 15px;
+    background: #fff4f1;
+    color: #8a3024;
+}
+
+.weather-error p {
+    margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+    .weather-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .city-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .city-form select {
+        width: 100%;
+    }
+
+    .current-weather {
+        padding: 22px;
+    }
+
+    .weather-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* KRISHIAI - CROP DISEASE DETECTION */
+
+.disease-page {
+    min-height: 75vh;
+    padding: 60px 0 85px;
+    background: var(--background);
+}
+
+.disease-heading {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.disease-heading h1 {
+    margin: 12px 0;
+    color: var(--green-dark);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.2;
+}
+
+.disease-heading p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.disease-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.upload-card,
+.disease-info-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.upload-card {
+    text-align: center;
+}
+
+.upload-icon {
+    margin-bottom: 12px;
+    font-size: 2.8rem;
+}
+
+.upload-card h2,
+.disease-info-card h2 {
+    color: var(--green-dark);
+    font-size: 1.6rem;
+}
+
+.upload-card>p {
+    margin: 10px 0 24px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.upload-area {
+    display: flex;
+    min-height: 190px;
+    padding: 25px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px dashed #a8c9a9;
+    border-radius: 16px;
+    background: #f5faf2;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-area:hover {
+    border-color: var(--green);
+    background: #edf6e8;
+}
+
+.upload-symbol {
+    color: var(--green);
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.upload-area strong {
+    color: var(--green-dark);
+    font-size: 1.05rem;
+}
+
+.upload-area>span:last-of-type {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.upload-area input {
+    width: 100%;
+    max-width: 260px;
+    font-size: 0.85rem;
+}
+
+.analyze-button {
+    width: 100%;
+    margin-top: 22px;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+#preview-container {
+    margin-top: 20px;
+}
+
+#preview-container[hidden] {
+    display: none;
+}
+
+#image-preview {
+    display: block;
+    width: 100%;
+    max-height: 280px;
+    margin: 0 auto;
+    border-radius: 12px;
+    object-fit: contain;
+    background: #f3f5f0;
+}
+
+#file-name {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+.disease-info-card>h2 {
+    margin: 12px 0 25px;
+}
+
+.disease-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.disease-step>span {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #eaf4e4;
+    color: var(--green-dark);
+    font-weight: 800;
+}
+
+.disease-step h3 {
+    margin-bottom: 5px;
+    color: var(--green-dark);
+    font-size: 1rem;
+}
+
+.disease-step p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.disease-note {
+    padding: 16px;
+    border: 1px solid #d8e7cb;
+    border-radius: 12px;
+    background: #f2f7ed;
+    color: var(--text);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.disease-alert {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.error-alert {
+    background: #fff0ee;
+    color: #922f25;
+    border: 1px solid #f1c9c3;
+}
+
+.success-alert {
+    background: #eef8e9;
+    color: #245c32;
+    border: 1px solid #cde4c5;
+}
+
+@media (max-width: 800px) {
+    .disease-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .disease-page {
+        padding: 40px 0 60px;
+    }
+
+    .upload-card,
+    .disease-info-card {
+        padding: 22px;
+    }
+
+    .upload-area {
+        padding: 18px;
+    }
+}
